@@ -1,2 +1,4 @@
 django
 PostgreSQL
+djangorestframework
+passlib

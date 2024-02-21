@@ -1,0 +1,29 @@
+# good links:
+# https://www.postgresqltutorial.com/postgresql-python/create-tables/
+# https://dev.to/dennisivy11/easiest-django-postgres-connection-ever-with-railway-11h6
+# https://www.youtube.com/watch?v=igXhsIgAU2g&ab_channel=GeekiePie
+
+
+
+# Steps made:
+
+# 1 install virtual envoirement and activate it
+
+# 2 install django
+
+# 3 type on terminal two things: django-admin startproject <project name>
+
+# 4 type on terminal the second thing : django-admin startapp <appname>
+
+# 5 on the project folder, find the "settings.py" and in the variable "INSTALLED_APPS", put the <app name> folder. SO then the Django will know that this folder makes part of your project
+
+# 6 install djangorestframework, and then put "rest_framework" into the variable "INSTALLED_APPS" on the step "5"
+
+# 7 on the <app name> folder, find the "models.py" and then create your own table model: Example
+    # class User(models.Model):
+    # id =models.IntegerField(primary_key=True)
+    # username = models.CharField(max_length=100, unique=True, required=True)
+    # email = models.EmailField(unique=True, required=True)
+    # password = models.CharField(max_length=100, required=True)
+
+# 8 then go to "views.py" and add : from rest_framework.views import APIView, from rest_framework.response import Response, from .models import *
