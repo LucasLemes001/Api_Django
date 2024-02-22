@@ -27,3 +27,40 @@
     # password = models.CharField(max_length=100, required=True)
 
 # 8 then go to "views.py" and add : from rest_framework.views import APIView, from rest_framework.response import Response, from .models import *
+
+# 9 Create  a Class and name it as you prefer, better give it a name that explains simply what you intend to do
+
+# 10 Create a def naming the method you wish and what you want to do: exemple: <INTENDED TO CREATE ADD A NEW USER IN DATABASE>
+#     class RegisterView(APIView):
+
+#     def post(self, request):
+
+#         if UserModel.objects.filter(username=request.data['username']).exists():
+#             return Response({"message": "Username already exists"})
+        
+#         if UserModel.objects.filter(email=request.data['email']).exists():
+#             return Response({"message": "Email already exists"})
+
+#         new_user = UserModel.objects.create(
+#             id = request.data['id'],
+#             username = request.data['username'],
+#             email = request.data['email'],
+#             password = pbkdf2_sha256.hash(request.data['password']),
+#         )
+
+#         return Response({"message": "User created successfully", "User": new_user.username})
+
+# 11 Go to urls.py and import these thing : from django.conf.urls import url
+                                            # from MyApp import views
+
+# 12 then create the url to the model and class that you create in the steps 10
+#     excemple: 
+#           path("register/", views.RegisterView.as_view())
+
+# 13 So then make the migration command, whenever you create an new object django make changes accordently:
+    # command: python manage.py makemigrations (CERTIFIQUE-SE DE ESTAR DENTRO DA PASTA DO PROJETO <project name>)
+
+# 14 Then if all runs well and the Model created, type on the terminal "python manage.py migrate"
+
+# 15 Then run the Django using the command "python manage.py runserver"
+                # If YOU GET A 404 NOT FUND, it is ok!! just add at the end the enpoint you created!!
