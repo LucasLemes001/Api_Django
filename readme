@@ -64,3 +64,27 @@
 
 # 15 Then run the Django using the command "python manage.py runserver"
                 # If YOU GET A 404 NOT FUND, it is ok!! just add at the end the enpoint you created!!
+
+# 16 Use Postman or any other tool to test your API. If you using postman, create a new WorkSpace if you like to
+        # Then use the Envoirement to create a new base_url variable, and add the base of the endpoints: http://127.0.0.1:8000 to save you time
+        # Then when you create an Endpoint, set afteer the Method: {{base_url}}/the endpoint
+        # As the example up there: POST {{base_url}}/register/
+            # inside the body, raw and Json:
+            # {
+                # "username":"Jhon Senna",
+                # "password":"123456789",
+                # "email":"jhon@teste.com"
+            # }
+
+# 17 Now, I made some endpoint to Check the User the we register, and the steps were ALMOST the same, exept the fact that we NEVER RETURN PASSWORD.
+    # For this, I've created a new file inside the folder "My App" called "serializer.py"
+    # and inside it imported the "from rest_framework import seializers" and "from .models import UserModel"
+    # Then I created a new class and called it "UserRegisteredSerializer(serializers.ModelSerializer)"
+    # added inside it:
+        #class Meta:
+            #model= UserModel
+            #fields= ["id","username","email"] Not including the passwowrd
+
+
+
+

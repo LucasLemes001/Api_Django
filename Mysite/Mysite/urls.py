@@ -21,4 +21,6 @@ from MyApp import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("register/", views.RegisterView.as_view()),
+    path("users/", views.UserListView.as_view()),
+    path("unregister/<int:user_id>", views.UnregisterView.as_view()),
 ]
