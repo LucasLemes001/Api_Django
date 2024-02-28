@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializer import UserRegisteredSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from .serializer import UserRegisteredSerializer, LoginSerializer
 from .models import UserModel
 from passlib.hash import pbkdf2_sha256
 
@@ -49,3 +50,51 @@ class UnregisterView(APIView):
             return Response({"message": "User deleted successfully"})
         except UserModel.DoesNotExist:
             return Response({"message": "User not found! Verify the id"})
+
+
+
+
+class LoginView(APIView):
+    
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            return Response(serializer.validated_data)
+        
+        return Response(serializer.errors, status=400)
+    
+
+            
+
+class LogoutView(APIView):
+
+    def post(self, request):
+        if "access_token" in request.data and "refresh_token" in request.data:
+            access_token = request.data["access_token"]
+            refresh_token = request.data["refresh_token"]
+
+        try: 
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+                return Response({"message": "User logged out successfully"})
+        except:
+            return Response({"message":" Invalid refresh token"}), 400
+        
+        else:
+            return Response ({"message":"Access token and refresh token are required"}), 400
+        
+
+class RefreshView(APIView):
+
+    def post(self, request):
+        if "refresh_token" in request.data:
+            refresh_token = request.data["refresh_token"]
+        else:
+            return Response({"message": "Refresh token is required"}), 400
+
+        try:
+            token = RefreshToken(refresh_token)
+            access_token = str(token.access_token)
+            return Response({"access_token": access_token})
+        except:
+            return Response({"message": "Invalid refresh token"}), 400

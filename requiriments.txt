@@ -1,4 +1,5 @@
 django
-PostgreSQL
+
 djangorestframework
 passlib
+djangorestframework_simplejwt

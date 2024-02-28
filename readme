@@ -2,6 +2,7 @@
 # https://www.postgresqltutorial.com/postgresql-python/create-tables/
 # https://dev.to/dennisivy11/easiest-django-postgres-connection-ever-with-railway-11h6
 # https://www.youtube.com/watch?v=igXhsIgAU2g&ab_channel=GeekiePie
+# https://www.freecodecamp.org/news/how-to-use-jwt-and-django-rest-framework-to-get-tokens/
 
 
 
@@ -87,4 +88,19 @@
 
 
 
+
+# 18. I Did installed "djangorestframework_simplejwt" and put in the "settings.py"
+    # the  variable "REST_FRAMEWORK = {
+    #     'DEFAULT_AUTHENTICATION_CLASSES': (
+    #         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    #     )
+    # }"    
+    # Then in the variable "INSTALLED_APPS" put "rest_framework_simplejwt"
+
+
+# 19. Then installed "from datetime import timedelta" for configure the duration of the tokens expiration
+    #just like this: SIMPLE_JWT = {
+    #     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    #     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    # } 
 
