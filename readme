@@ -104,3 +104,27 @@
     #     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     # } 
 
+# 20. On "views.py" we define a new class for the checking of the user endpoint. In this case is the "UserListView(APIView)".
+    #Inside it, we define a new function called: "def get(self, request):"
+    # Then a new variable called: users = UserModel.objects.all(), that will querry all objects in database
+    # Anotheer variable called "serializer = UserRegisteredSerializer(users,many=True)", that will serialize the data
+    # Finally, we return the response with the serializer data.
+
+
+# 21. For the endpoint works, we created a urlpattern in the "urls.py" and inside it created a new thing called: path("users/", views.UserListView.as_view())
+
+#22. Afther this, I created a few endpoints to "Unregister" and "Login". And the logic is similar to the one above.
+    # First you define a class, call as you want
+    # Creat a function named with the method you want(GET, POST, PUT, DELETE)
+        #  use inside the funtion some paramethers
+            # self -> To you use access the objects instaced
+            # request -> To you use access the incoming data from the client
+            # user_id -> To you use access the id of the user espefically
+    # Inside the function the logic you would like to do
+        # For example: You would like to check if there's an user with the incoming "username"
+        # You compare the incoming username with those inside the database -> this is the logic. 
+        # and then you imagine something like:
+            # " IF inside our database.the objects hare.we're loking something specific(names iqual to the username).do he have it?" -> this is the loigic
+            # and the sentence will be sometihing like this:
+                # "if UserModel.objects.filter(username=request.data['username']).exists()"
+    # All you have to do is then return the response after you threat the data.
